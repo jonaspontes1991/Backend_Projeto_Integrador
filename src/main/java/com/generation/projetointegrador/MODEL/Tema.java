@@ -45,6 +45,6 @@ public class Tema {
     }
 
     public void setDescricao(String descricao) {
-        descricao = descricao;
+        this.descricao = descricao;
     }
 }

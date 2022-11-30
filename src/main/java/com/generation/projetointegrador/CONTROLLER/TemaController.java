@@ -1,6 +1,5 @@
 package com.generation.projetointegrador.CONTROLLER;
 
-
 import com.generation.projetointegrador.MODEL.Tema;
 import com.generation.projetointegrador.REPOSITORY.TemaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,7 @@ public class TemaController {
       return ResponseEntity.ok(temaRepository.findByDescricaoContainingIgnoreCase(descricao));
 
   }
-  @PostMapping
+  @PostMapping/*atualizando metodo */
   public ResponseEntity postProduto(@Valid @RequestBody Tema tema)
   {
     return ResponseEntity.status(HttpStatus.CREATED).body(temaRepository.save(tema));

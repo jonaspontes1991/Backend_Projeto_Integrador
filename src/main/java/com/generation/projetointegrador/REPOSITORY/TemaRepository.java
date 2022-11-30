@@ -1,5 +1,6 @@
 package com.generation.projetointegrador.REPOSITORY;
 
+
 import com.generation.projetointegrador.MODEL.Tema;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
@@ -9,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface TemaRepository extends JpaRepository<Tema, Long> {
-  public List<Tema> findByDescricaoContainingIgnoreCase(@Param("titlo") String descricao);
+  public List<Tema> findByDescricaoContainingIgnoreCase(@Param("descricao") String descricao);
 
 }
