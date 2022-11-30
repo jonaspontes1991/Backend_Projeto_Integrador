@@ -21,7 +21,7 @@ public class Tema {
 
     @NotBlank(message = "A descrição ão pode ser vazio")
     @Size(min = 10,max = 200, message = "A descrição não pode ser menor que 10 e maior que 200")
-    private String Descricao;
+    private String descricao;
 
 
     public Long getId() {
@@ -41,10 +41,10 @@ public class Tema {
     }
 
     public String getDescricao() {
-        return Descricao;
+        return descricao;
     }
 
     public void setDescricao(String descricao) {
-        Descricao = descricao;
+        descricao = descricao;
     }
 }

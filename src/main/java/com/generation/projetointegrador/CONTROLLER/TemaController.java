@@ -35,9 +35,9 @@ public class TemaController {
               .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
   }
 
-  @GetMapping("/titulo/{titulo}")/* busca espeficifa*/
-  public ResponseEntity<List<Tema>> getByTitle(@PathVariable String titulo){
-      return ResponseEntity.ok(temaRepository.findByTitleContainingIgnoreCase(titulo));
+  @GetMapping("/descricao/{descricao}")/* busca espeficifa*/
+  public ResponseEntity<List<Tema>> getByTitle(@PathVariable String descricao){
+      return ResponseEntity.ok(temaRepository.findByDescricaoContainingIgnoreCase(descricao));
 
   }
   @PostMapping
@@ -59,9 +59,9 @@ public class TemaController {
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @DeleteMapping("/{id}")
   public void delete(@PathVariable long id) {
-    Optional<Tema> postagem = temaRepository.findById(id);
+    Optional<Tema> tema = temaRepository.findById(id);
 
-    if(postagem.isEmpty())
+    if(tema.isEmpty())
       throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     temaRepository.deleteById(id);
   }
