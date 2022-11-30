@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.PublicKey;
+
 import java.util.List;
 
 @Repository
@@ -38,6 +38,13 @@ public class TemaController {
       return ResponseEntity.ok(temaRepository.findByTitleContainingIgnoreCase(titulo));
 
   }
+  @PostMapping
+  public ResponseEntity postProduto(@Valid @RequestBody Tema tema)
+  {
+    return ResponseEntity.status(HttpStatus.CREATED).body(temaRepository.save(tema));
+
+  }
+
 
   @PutMapping
   public ResponseEntity<Tema> put(@Valid @RequestBody Tema tema){
