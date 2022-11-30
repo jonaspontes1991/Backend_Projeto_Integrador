@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface TemaRepository extends JpaRepository<Tema, Long> {
 
-  public List<Tema> findByTitleContainingIgnoreCase(@Param("titlo") String titulo);
+  public List<Tema> findByDescricaoContainingIgnoreCase(@Param("descricao") String descricao);
 
 
 }
