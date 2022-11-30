@@ -37,7 +37,7 @@ public class TemaController {
       return ResponseEntity.ok(temaRepository.findByTitleContainingIgnoreCase(titulo));
 
   }
-  @PostMapping
+  @PostMapping/*atualizando metodo */
   public ResponseEntity postProduto(@Valid @RequestBody Tema tema)
   {
     return ResponseEntity.status(HttpStatus.CREATED).body(temaRepository.save(tema));
