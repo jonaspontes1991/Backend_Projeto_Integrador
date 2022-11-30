@@ -8,10 +8,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequestMapping("/temas")
@@ -52,6 +54,16 @@ public class TemaController {
             .map(resposta -> ResponseEntity.status(HttpStatus.CREATED)
                     .body(temaRepository.save(tema)))
             .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+  }
+
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @DeleteMapping("/{id}")
+  public void delete(@PathVariable long id) {
+    Optional<Tema> postagem = temaRepository.findById(id);
+
+    if(postagem.isEmpty())
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    temaRepository.deleteById(id);
   }
 
 
