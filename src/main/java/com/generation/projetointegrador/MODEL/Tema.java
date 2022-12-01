@@ -15,7 +15,6 @@ public class Tema {
     private  Long id;
 
     @NotBlank(message = "O nome não pode ser vazio")
-    @Size(min = 10,max = 100)
     @Size(min = 3,max = 150, message = "O titulo não pode ser menor que 10 e maior que 150")
     private String titulo;
 
