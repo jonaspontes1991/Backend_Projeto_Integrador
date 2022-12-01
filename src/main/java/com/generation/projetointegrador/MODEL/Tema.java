@@ -1,10 +1,13 @@
 package com.generation.projetointegrador.MODEL;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_temas")
@@ -22,6 +25,17 @@ public class Tema {
     @Size(min = 10,max = 200, message = "A descrição não pode ser menor que 10 e maior que 200")
     private String descricao;
 
+    @OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("tema")
+    private List<Postagem> postagem;
+
+    public List<Postagem> getPostagem() {
+        return postagem;
+    }
+
+    public void setPostagem(List<Postagem> postagem) {
+        this.postagem = postagem;
+    }
 
     public Long getId() {
         return id;

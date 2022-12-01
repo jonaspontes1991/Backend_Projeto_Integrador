@@ -1,9 +1,12 @@
 package com.generation.projetointegrador.MODEL;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_usuarios")
@@ -27,6 +30,18 @@ public class Usuario {
     private String senha;
 
     private String foto;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("usuario")
+    private List<Postagem> postagem;
+
+    public List<Postagem> getPostagem() {
+        return postagem;
+    }
+
+    public void setPostagem(List<Postagem> postagem) {
+        this.postagem = postagem;
+    }
 
     public Long getId() {
         return id;
