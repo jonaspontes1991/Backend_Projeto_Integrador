@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequestMapping("/postagens")
@@ -35,5 +35,41 @@ public class PostagemController {
                 .map(reposta -> ResponseEntity.ok(reposta))
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 
+
+    }
+    @GetMapping("/titulo/{titulo}")/* busca espeficifa*/
+    public ResponseEntity<List<Postagem>> getByTitle(@PathVariable String titulo){
+        return ResponseEntity.ok(postagemRepository.findByTituloContainingIgnoreCase(titulo));
+
+    }
+
+    @PostMapping/*atualizando metodo */
+    public ResponseEntity postPostagem(@Valid @RequestBody Postagem postagem)
+    {
+        return ResponseEntity.status(HttpStatus.CREATED).body(postagemRepository.save(postagem));
+
+
+
+    }
+
+
+
+
+    @PutMapping
+    public ResponseEntity<Postagem> put(@Valid @RequestBody Postagem postagem){
+        return postagemRepository.findById(postagem.getId())
+                .map(resposta -> ResponseEntity.status(HttpStatus.CREATED)
+                        .body(postagemRepository.save(postagem)))
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable long id) {
+        Optional<Postagem> postagem = postagemRepository.findById(id);
+
+        if(postagem.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        postagemRepository.deleteById(id);
     }
 }
