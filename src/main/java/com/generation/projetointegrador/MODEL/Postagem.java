@@ -19,11 +19,11 @@ public class Postagem {
     private Long id;
 
     @NotBlank(message = "O titulo não pode ser vazio")
-    @Size(min = 3,max = 150, message = "O titulo não pode ser menor que 10 e maior que 150")
+    @Size(min = 8,max = 200, message = "O titulo não pode ser menor que 10 e maior que 150")
     private String titulo;
 
     @NotBlank(message = "A descrição não pode ser vazio")
-    @Size(min = 3,max = 150, message = "O titulo não pode ser menor que 10 e maior que 150")
+    @Size(min = 10,max = 500, message = "O titulo não pode ser menor que 10 e maior que 150")
     private String descricao;
 
     private String link;

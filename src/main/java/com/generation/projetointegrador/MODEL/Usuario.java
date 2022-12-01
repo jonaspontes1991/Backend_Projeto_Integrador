@@ -18,15 +18,15 @@ public class Usuario {
     private Long id;
 
     @NotBlank(message = "O nome não pode ser vazio")
-    @Size(min = 3,max = 150, message = "O titulo não pode ser menor que 10 e maior que 150")
+    @Size(min = 2,max = 150, message = "O titulo não pode ser menor que 10 e maior que 150")
     private String nome;
 
     @NotBlank(message = "O usuario não pode ser vazio")
-    @Size(min = 3,max = 150, message = "O titulo não pode ser menor que 10 e maior que 150")
+    @Size(min = 10,max = 150, message = "O titulo não pode ser menor que 10 e maior que 150")
     private String usuario;
 
     @NotNull(message = "A senha não pode ser nulo!")
-    @Size(min = 3,max = 150, message = "O titulo não pode ser menor que 10 e maior que 150")
+    @Size(min = 4,max = 150, message = "O titulo não pode ser menor que 10 e maior que 150")
     private String senha;
 
     private String foto;
