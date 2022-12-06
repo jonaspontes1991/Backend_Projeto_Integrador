@@ -1,50 +1,51 @@
 package com.generation.projetointegrador.MODEL;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_usuarios")
 public class Usuario {
 
     @Id
-    @NotNull(message = "O id não pode ser nulo!")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O nome não pode ser vazio")
-    @Size(min = 2,max = 150, message = "O titulo não pode ser menor que 10 e maior que 150")
+    @NotNull(message = "O atributo Nome é Obrigatório!")
     private String nome;
 
-    @NotBlank(message = "O usuario não pode ser vazio")
-    @Size(min = 10,max = 150, message = "O titulo não pode ser menor que 10 e maior que 150")
+    @NotNull(message = "O atributo Usuário é Obrigatório!")
+    @Email(message = "O atributo Usuário deve ser um email válido!")
     private String usuario;
 
-    @NotNull(message = "A senha não pode ser nulo!")
-    @Size(min = 4,max = 150, message = "O titulo não pode ser menor que 10 e maior que 150")
+    @NotBlank(message = "O atributo Senha é Obrigatório!")
+    @Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
     private String senha;
 
+    @Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
     private String foto;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties("usuario")
     private List<Postagem> postagem;
 
-    public List<Postagem> getPostagem() {
-        return postagem;
-    }
-
-    public void setPostagem(List<Postagem> postagem) {
-        this.postagem = postagem;
-    }
+    /* Insira os Getters and Setters */
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -52,7 +53,7 @@ public class Usuario {
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public void setNome(String nome) {
@@ -60,7 +61,7 @@ public class Usuario {
     }
 
     public String getUsuario() {
-        return usuario;
+        return this.usuario;
     }
 
     public void setUsuario(String usuario) {
@@ -68,7 +69,7 @@ public class Usuario {
     }
 
     public String getSenha() {
-        return senha;
+        return this.senha;
     }
 
     public void setSenha(String senha) {
@@ -76,10 +77,20 @@ public class Usuario {
     }
 
     public String getFoto() {
-        return foto;
+        return this.foto;
     }
 
     public void setFoto(String foto) {
         this.foto = foto;
     }
+
+    public List<Postagem> getPostagem() {
+        return this.postagem;
+    }
+
+    public void setPostagem(List<Postagem> postagem) {
+        this.postagem = postagem;
+    }
+
+
 }
