@@ -16,19 +16,19 @@ import io.swagger.v3.oas.models.responses.ApiResponses;
 public class SwaggerConfig {
 
     @Bean
-    public OpenAPI springBlogPessoalOpenAPI() {
+    public OpenAPI springProjetoIntegradorOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
                         .title("Projeto Integrador")
                         .description("Projeto Integrador - Generation Brasil")
                         .version("v0.0.1")
                         .license(new License()
-                                .name("Generation Brasil")
-                                .url("https://brazil.generation.org/"))
+                                .name("Gestarbem")
+                                .url("https://github.com/GEstar-Bem"))
                         .contact(new Contact()
-                                .name("Gestar Bem")
+                                .name("Gestarbem")
                                 .url("https://github.com/GEstar-Bem/Backend_Projeto_Integrador")
-                                .email("conteudogeneration@gmail.com")))
+                                .email("gestarbem@gmail.com")))
                 .externalDocs(new ExternalDocumentation()
                         .description("Github")
                         .url("https://github.com/GEstar-Bem/Backend_Projeto_Integrador"));
